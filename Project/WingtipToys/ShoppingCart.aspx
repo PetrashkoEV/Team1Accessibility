@@ -51,7 +51,7 @@
     <table>
         <tr>
             <td>
-                <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" />
+                <asp:Button ID="UpdateBtn" runat="server" Text="Update" OnClick="UpdateBtn_Click" aria-label="Update products in cart" />
             </td>
             <td>
                 <asp:ImageButton ID="CheckoutImageBtn" runat="server"
