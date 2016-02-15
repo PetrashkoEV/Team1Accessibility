@@ -22,13 +22,13 @@ namespace WingtipToys.Account {
         protected global::System.Web.UI.WebControls.Literal ErrorMessage;
         
         /// <summary>
-        /// emailLabel control.
+        /// validationSummary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label emailLabel;
+        protected global::System.Web.UI.WebControls.ValidationSummary validationSummary;
         
         /// <summary>
         /// Email control.
@@ -49,15 +49,6 @@ namespace WingtipToys.Account {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator emailValidator;
         
         /// <summary>
-        /// passwordLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label passwordLabel;
-        
-        /// <summary>
         /// Password control.
         /// </summary>
         /// <remarks>
@@ -76,13 +67,13 @@ namespace WingtipToys.Account {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator passwordValidator;
         
         /// <summary>
-        /// confirmPasswordLabel control.
+        /// passowrdComplexityValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label confirmPasswordLabel;
+        protected global::System.Web.UI.WebControls.CustomValidator passowrdComplexityValidator;
         
         /// <summary>
         /// ConfirmPassword control.

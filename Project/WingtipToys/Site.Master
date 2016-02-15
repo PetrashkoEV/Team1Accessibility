@@ -13,12 +13,11 @@
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
 </head>
 <body>
     <a class="wcag-hidden skip-main-link non-focusable" href="#main-content">Skip to main content</a>
 
-    <form runat="server">
+    <form runat="server" novalidate>
         <asp:ScriptManager runat="server">
             <Scripts>
                 <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
@@ -48,7 +47,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Wingtip Toys</a>
+                    <a class="navbar-brand" aria-describedby="wingtiptoys.com" runat="server" href="~/">Wingtip Toys</a>
                 </div>
                 <div class="navbar-collapse collapse" role="navigation">
                     <ul class="nav navbar-nav" role="menu" aria-label="Main navigation">
@@ -68,9 +67,9 @@
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
-                                <li>
+                            <ul class="nav navbar-nav navbar-right" role="menu" aria-label="Account">
+                                <li role="menuitem"><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
+                                <li role="menuitem">
                                     <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
                                 </li>
                             </ul>
@@ -85,25 +84,29 @@
             </a>  
             <br />  
         </div>
-        <div id="CategoryMenu" style="text-align: center">       
-            <asp:ListView ID="categoryList"  
+        <div id="CategoryMenu" role="complementary" aria-label="Product filter" style="text-align: center">       
+            <div role="list">
+                <asp:ListView ID="categoryList"  
                 ItemType="WingtipToys.Models.Category" 
                 runat="server"
                 SelectMethod="GetCategories" >
                 <ItemTemplate>
-                    <b style="font-size: large; font-style: normal">
+                    <b role="listitem" style="font-size: large; font-style: normal">
                     <a href="<%#: GetRouteUrl("ProductsByCategoryRoute", new {categoryName = Item.CategoryName}) %>">
                         <%#: Item.CategoryName %>
                     </a>
                     </b>
                 </ItemTemplate>
-                <ItemSeparatorTemplate>  |  </ItemSeparatorTemplate>
+                <ItemSeparatorTemplate>  <span aria-hidden="true">|</span>  </ItemSeparatorTemplate>
             </asp:ListView>
+            </div>
         </div>
-        <div class="container body-content" id="main-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr aria-hidden="true" />
+        <div class="container body-content">
+            <div id="main-content" role="main">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+                <hr aria-hidden="true" />
+            </div>
             <footer role="contentinfo">
                 <p>&copy; <%: DateTime.Now.Year %> - Wingtip Toys</p>
             </footer>

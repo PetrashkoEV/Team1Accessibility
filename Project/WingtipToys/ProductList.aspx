@@ -5,7 +5,7 @@
     <section>
         <div>
             <hgroup>
-                <h2 aria-level="1"><%: Page.Title %></h2>
+                <h2 role="heading" aria-level="1"><%: Page.Title %></h2>
             </hgroup>
 
             <asp:ListView ID="productList" runat="server"

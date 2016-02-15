@@ -183,7 +183,6 @@
     <Content Include="Catalog\Images\planepaper.png" />
     <Content Include="Catalog\Images\planeprop.png" />
     <Content Include="Catalog\Images\rocket.png" />
-    <Content Include="Catalog\Images\Thumbs.db" />
     <Content Include="Catalog\Images\Thumbs\boatbig.png" />
     <Content Include="Catalog\Images\Thumbs\boatpaper.png" />
     <Content Include="Catalog\Images\Thumbs\boatsail.png" />
@@ -200,7 +199,6 @@
     <Content Include="Catalog\Images\Thumbs\planepaper.png" />
     <Content Include="Catalog\Images\Thumbs\planeprop.png" />
     <Content Include="Catalog\Images\Thumbs\rocket.png" />
-    <Content Include="Catalog\Images\Thumbs\Thumbs.db" />
     <Content Include="Catalog\Images\Thumbs\truckbig.png" />
     <Content Include="Catalog\Images\Thumbs\truckearly.png" />
     <Content Include="Catalog\Images\Thumbs\truckfire.png" />

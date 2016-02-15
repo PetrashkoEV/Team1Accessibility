@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Owin;
+using System.Web.UI.WebControls;
 using WingtipToys.Models;
 
 namespace WingtipToys.Account
@@ -13,29 +13,44 @@ namespace WingtipToys.Account
     {
         protected void CreateUser_Click(object sender, EventArgs e)
         {
-            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
-            IdentityResult result = manager.Create(user, Password.Text);
-            if (result.Succeeded)
+            if (IsValid)
             {
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                //string code = manager.GenerateEmailConfirmationToken(user.Id);
-                //string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
-                //manager.SendEmail(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>.");
+                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var user = new ApplicationUser() { UserName = Email.Text, Email = Email.Text };
+                IdentityResult result = manager.Create(user, Password.Text);
 
-                IdentityHelper.SignIn(manager, user, isPersistent: false);
-
-                using (WingtipToys.Logic.ShoppingCartActions usersShoppingCart = new WingtipToys.Logic.ShoppingCartActions())
+                if (result.Succeeded)
                 {
-                  String cartId = usersShoppingCart.GetCartId();
-                  usersShoppingCart.MigrateCart(cartId, user.Id);
-                }
+                    IdentityHelper.SignIn(manager, user, isPersistent: false);
 
-                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                    using (WingtipToys.Logic.ShoppingCartActions usersShoppingCart = new WingtipToys.Logic.ShoppingCartActions())
+                    {
+                        String cartId = usersShoppingCart.GetCartId();
+                        usersShoppingCart.MigrateCart(cartId, user.Id);
+                    }
+
+                    IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+                }
             }
-            else 
+        }
+
+        protected void CheckPasswordComplexity(object source, ServerValidateEventArgs arg)
+        {
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var validationTask = manager.PasswordValidator.ValidateAsync(arg.Value);
+            validationTask.Wait();
+
+            var validationResult = validationTask.Result;
+            var validator = source as CustomValidator;
+
+            arg.IsValid = validationResult.Succeeded;
+
+            if (validator != null && !validationResult.Succeeded)
             {
-                ErrorMessage.Text = result.Errors.FirstOrDefault();
+                validator.Text = validationResult.Errors.FirstOrDefault();
+                Password.Attributes.Add("aria-describedby", validator.ClientID);
+                Password.Attributes.Add("aria-invalid", "true");
+                validationSummary.Focus();
             }
         }
     }

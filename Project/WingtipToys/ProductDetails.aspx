@@ -4,7 +4,7 @@
     <asp:FormView ID="productDetail" runat="server" ItemType="WingtipToys.Models.Product" SelectMethod ="GetProduct" RenderOuterTable="false">
         <ItemTemplate>
             <div>
-                <h1><%#:Item.ProductName %></h1>
+                <h1 role="heading" aria-level="1"><%#:Item.ProductName %></h1>
             </div>
             <br />
             <table>

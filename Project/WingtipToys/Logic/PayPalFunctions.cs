@@ -188,6 +188,7 @@ public class NVPAPICaller
     objRequest.Timeout = Timeout;
     objRequest.Method = "POST";
     objRequest.ContentLength = strPost.Length;
+    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
     try
     {

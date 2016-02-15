@@ -18,15 +18,37 @@
             oldDescrybedByVal = $(control).attr("aria-describedby") || "";
 
             if (errorSpan.isvalid) {
-                $(control).attr("aria-invalid", false);
-                $(control).attr("aria-describedby", oldDescrybedByVal.replace(" " + errorSpan.id, ""));
+                var newMessage = oldDescrybedByVal.replace(" " + errorSpan.id, "");
+
+                $(control).attr("aria-describedby", newMessage);
+                $(control).attr("aria-invalid", newMessage.length > 0);
             }
             else {
-                if (oldDescrybedByVal.indexOf(" " + errorSpan.id) === -1)
+                if (oldDescrybedByVal.indexOf(" " + errorSpan.id) === -1) {
                     $(control).attr("aria-describedby", oldDescrybedByVal + " " + errorSpan.id);
-
-                $(errorSpan).attr("aria-hidden", false);
+                    $(control).attr("aria-invalid", true);
+                }
             }
         };
     }
+
+    if (window.ValidationSummaryOnSubmit) {
+        var proxiedSummary = window.ValidationSummaryOnSubmit;
+
+        window.ValidationSummaryOnSubmit = function () {
+            var result = proxiedSummary.apply(this, arguments);
+
+            onAfterSummary(arguments);
+
+            return result;
+        };
+
+        var onAfterSummary = function (arguments) {
+            if (typeof (Page_ValidationSummaries) == "undefined")
+                return;
+
+            $(Page_ValidationSummaries[0]).html("One or more errors have occurred when attempting to create your account.");
+        };
+    }
+    
 })(jQuery);

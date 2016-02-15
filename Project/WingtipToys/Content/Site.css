@@ -27,6 +27,7 @@ input[type="select"] {
     max-width: 280px;
 }
 
+table caption,
 .wcag-hidden {
     left: -999px;
     position: absolute;

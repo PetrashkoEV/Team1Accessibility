@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="Contact" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Contact.aspx.cs" Inherits="WingtipToys.Contact" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <h2 aria-level="1"><%: Title %>.</h2>
-    <h3 aria-level="2">Your contact page.</h3>
+    <h2 role="heading" aria-level="1"><%: Title %>.</h2>
+    <h3 role="heading" aria-level="2">Your contact page.</h3>
     <address>
         One Microsoft Way<br />
         Redmond, WA 98052-6399<br />

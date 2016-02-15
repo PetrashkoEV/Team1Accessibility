@@ -89,6 +89,7 @@ namespace WingtipToys
         protected void UpdateBtn_Click(object sender, EventArgs e)
         {
             UpdateCartItems();
+            Response.Redirect("ShoppingCart.aspx");
         }
 
         protected void CheckoutBtn_Click(object sender, ImageClickEventArgs e)
@@ -111,8 +112,7 @@ namespace WingtipToys
             var item = e.Row.DataItem as CartItem;
             if (item == null)
                 return;
-            var control = e.Row.FindControl("Remove");
-            var removeCheckbox = control as CheckBox;
+            var removeCheckbox = e.Row.FindControl("Remove") as CheckBox;
             removeCheckbox.InputAttributes.Add("aria-label", "Remove " + item.Product.ProductName);
         }
     }
