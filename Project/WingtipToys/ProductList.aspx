@@ -8,9 +8,12 @@
                 <h2 role="heading" aria-level="1"><%: Page.Title %></h2>
             </hgroup>
 
-            <asp:ListView ID="productList" runat="server"
-                DataKeyNames="ProductID" GroupItemCount="4"
-                ItemType="WingtipToys.Models.Product" SelectMethod="GetProducts">
+            <asp:ListView ID="productList" 
+                runat="server"
+                DataKeyNames="ProductID" 
+                GroupItemCount="4"
+                ItemType="WingtipToys.Models.Product" 
+                SelectMethod="GetProducts">
                 <EmptyDataTemplate>
                     <table>
                         <tr>
@@ -19,15 +22,15 @@
                     </table>
                 </EmptyDataTemplate>
                 <EmptyItemTemplate>
-                    <td />
+                    <td aria-hidden="true" />
                 </EmptyItemTemplate>
                 <GroupTemplate>
-                    <tr id="itemPlaceholderContainer" runat="server">
+                    <tr id="itemPlaceholderContainer" runat="server" role="presentation">
                         <td id="itemPlaceholder" runat="server"></td>
                     </tr>
                 </GroupTemplate>
                 <ItemTemplate>
-                    <td runat="server">
+                    <td role="listitem">
                         <table>
                             <tr>
                                 <td>
@@ -42,31 +45,30 @@
                                     <a href="<%#: GetRouteUrl("ProductByNameRoute", new {productName = Item.ProductName}) %>">
                                         <%#:Item.ProductName%>
                                     </a>
-                                    <br />
+                                    <br aria-hidden="true"/>
                                     <span>
                                         <b>Price: </b><%#:String.Format("{0:c}", Item.UnitPrice)%>
                                     </span>
-                                    <br />
+                                    <br aria-hidden="true"/>
                                     <a href="/AddToCart.aspx?productID=<%#:Item.ProductID %>" aria-label="Add To Cart <%#:Item.ProductName%>">
-                                        <span class="ProductListItem" aria-hidden="true">
+                                        <span class="ProductListItem">
                                             <b>Add To Cart<b>
                                         </span>
                                     </a>
                                 </td>
                             </tr>
                             <tr aria-hidden="true">
-                                <td>&nbsp;</td>
+                                <td aria-hidden="true">&nbsp;</td>
                             </tr>
                         </table>
-                        </p>
                     </td>
                 </ItemTemplate>
                 <LayoutTemplate>
-                    <table style="width: 100%;">
+                    <table id="ProductsList" style="width: 100%;" runat="server">
                         <tbody>
                             <tr>
                                 <td>
-                                    <table id="groupPlaceholderContainer" runat="server" style="width: 100%">
+                                    <table id="groupPlaceholderContainer" runat="server" style="width: 100%" role="list">
                                         <tr id="groupPlaceholder"></tr>
                                     </table>
                                 </td>

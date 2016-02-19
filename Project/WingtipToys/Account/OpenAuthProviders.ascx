@@ -6,12 +6,10 @@
     <asp:ListView runat="server" ID="providerDetails" ItemType="System.String"
         SelectMethod="GetProviderNames" ViewStateMode="Disabled">
         <ItemTemplate>
-            <p>
-                <button type="submit" class="btn btn-default" name="provider" value="<%#: Item %>"
+                <button type="submit" class="btn btn-default button-margin" name="provider" value="<%#: Item %>"
                     title="Log in using your <%#: Item %> account." tabindex="0">
                     <%#: Item %>
                 </button>
-            </p>
         </ItemTemplate>
         <EmptyDataTemplate>
             <div>

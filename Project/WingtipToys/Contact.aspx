@@ -6,8 +6,10 @@
     <address>
         One Microsoft Way<br />
         Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
+        <abbr title="Phone" aria-hidden="true">P:</abbr><span class="wcag-hidden">Phone</span> 425.555.0100
+        <span class="wcag-hidden">
+            <br />
+        </span>
     </address>
 
     <address>

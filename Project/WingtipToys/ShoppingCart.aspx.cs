@@ -103,8 +103,8 @@ namespace WingtipToys
 
         protected void CartList_RowCreated(object sender, GridViewRowEventArgs e)
         {
-            if (e.Row.RowType == DataControlRowType.Header)
-                e.Row.TableSection = TableRowSection.TableHeader;
+            if (e.Row.RowType == DataControlRowType.Footer)
+                e.Row.Attributes.Add("aria-hidden", "true");
         }
 
         protected void CartList_RowDataBound(object sender, GridViewRowEventArgs e)

@@ -7,6 +7,7 @@
     <asp:GridView 
         ID="CartList"
         AutoGenerateColumns="False"
+        ShowFooter="true"
         GridLines="Vertical"
         CellPadding="4"
         ItemType="WingtipToys.Models.CartItem" 
@@ -18,7 +19,7 @@
         runat="server">
         <Columns>
             <asp:BoundField DataField="ProductID" HeaderText="ID" SortExpression="ProductID" />
-            <asp:BoundField DataField="Product.ProductName" HeaderText="Name" AccessibleHeaderText="" />
+            <asp:BoundField DataField="Product.ProductName" HeaderText="Name" />
             <asp:BoundField DataField="Product.UnitPrice" HeaderText="Price (each)" DataFormatString="{0:c}" />
             <asp:TemplateField HeaderText="Quantity">
                 <ItemTemplate>
@@ -41,13 +42,13 @@
         </Columns>
     </asp:GridView>
     <div>
-        <p></p>
+        <p aria-hidden="true"></p>
         <strong>
             <asp:Label ID="LabelTotalText" runat="server" Text="Order Total: "></asp:Label>
             <asp:Label ID="lblTotal" runat="server" EnableViewState="false"></asp:Label>
         </strong>
     </div>
-    <br />
+    <br aria-hidden="true" />
     <table>
         <tr>
             <td>
